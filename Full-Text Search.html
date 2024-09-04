@@ -43,7 +43,7 @@
     }
    </style>
     <script src="https://kit.fontawesome.com/e1f93e03c9.js"></script>
-    <title>MovieSearchApp</title>
+    <title>JudgementSearchApp</title>
 </head>
 <body>
 <div class="container">
@@ -95,7 +95,7 @@
                     console.log(response);
                     txt += `<br><br><br><b><h3>Sadly you have an error. Status: ${response.status}`;
                     if (response.json.length === 0)
-                        txt+=`<br><br>Make sure to search for some type of movie. Don't leave your search box empty.</h3></b>`;
+                        txt+=`<br><br>Make sure to search for some judgement. Don't leave your search box empty.</h3></b>`;
                     document.getElementById("results").innerHTML = txt;
                     throw Error(response.statusText);
                 }
@@ -135,7 +135,7 @@
         for (i; i < movies.length; i++) {
             highlight_length = movies[i].highlight.length;
 
-            txt += `<br><b><p style="color:green"><a href="view-doc.html?docId=${movies[i]._id }">${movies[i]._id }</a></p></b><br>`;
+            txt += `<br><b><p style="color:green"><a target="_blank" href="view-doc.html?docId=${movies[i]._id }">${movies[i].title }</a></p></b><br>`;
             txt += `<b>Score:  ${movies[i].score} </b><br>`;
 
             //txt += `Year: ${movies[i].year["$numberInt"]} <br><br>`;

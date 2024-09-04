@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Viewer</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script>
         window.onload = function() {
             // Get document ID from the URL
@@ -16,8 +19,19 @@
                     .then(response => response.json())
                     .then(data => {
                         // Populate the document header and text
-                        document.getElementById('doc-header').textContent = data._id;
-                        document.getElementById('doc-text').innerHTML = data.text.replace(/\n/g, '<br>');
+                        document.getElementById('doc-header').textContent = data.title;
+
+                        const contentDiv = document.getElementById('doc-text');
+                        var paragraphs = data.text.split('\n');
+                        paragraphs.forEach(function(paragraph) {
+                            if(paragraph.trim().length > 0) {
+                                const pElement = document.createElement('p');
+                                pElement.textContent = paragraph;
+                                contentDiv.appendChild(pElement);
+                            }
+                        });
+
+                        //document.getElementById('doc-text').innerHTML = data.text.replace(/\n/g, '<br>');
                     })
                     .catch(error => {
                         console.error('Error fetching document:', error);
@@ -30,7 +44,21 @@
     </script>
 </head>
 <body>
-    <h1 id="doc-header">Loading...</h1>
-    <div id="doc-text">Please wait...</div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <!-- Title -->
+                <h1 class="text-center mb-4" id="doc-header">Loading...</h1>
+                <!-- Contents -->
+                <div class="content" >
+                    <p id="doc-text">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <h1 id="doc-header">Loading...</h1>-->
+<!--    <div id="doc-text">Please wait...</div>-->
 </body>
 </html>
