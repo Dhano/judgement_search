@@ -135,8 +135,8 @@
         for (i; i < movies.length; i++) {
             highlight_length = movies[i].highlight.length;
 
-            txt += `<br><b><p style="color:green"><a target="_blank" href="view-doc.html?docId=${movies[i]._id }">${movies[i].title }</a></p></b><br>`;
-            txt += `<b>Score:  ${movies[i].score} </b><br>`;
+            txt += `<br><b><p style="color:green"><a target="_blank" href="view-doc.html?docId=${movies[i]._id }">${movies[i].title } </a><b>(${movies[i]._id })</b></p></b><br>`;
+            //txt += `<b>Score:  ${movies[i].score} </b><br>`;
 
             //txt += `Year: ${movies[i].year["$numberInt"]} <br><br>`;
 
